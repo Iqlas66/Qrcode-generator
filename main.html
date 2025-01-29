@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <style>
+        body {
+            position: absolute; /* Prevent the QR code from affecting the document flow */
+            top: 50%;  /* Position from the top */
+            left: 50%; /* Position from the left */
+            transform: translate(-50%, -50%); /* Center the QR code */
+            width: 256px;  /* Set the width of the QR code */
+            height: 256px; /* Set the height of the QR code */
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <input type="text" name="hello" id="hi">
+    <button onclick="hi()">Generate</button>
+
+    <!-- Div to display the QR code -->
+    <div id="qrcode"></div>
+
+    <script type="text/javascript">
+        function hi() {
+            let x = document.getElementById("hi").value;
+            
+            // Ensure the QR code div is cleared before generating a new QR code
+            document.getElementById("qrcode").innerHTML = "";
+
+            // Generate the QR code with the specified size
+            new QRCode(document.getElementById("qrcode"), {
+                text: x,  // The input value (URL or text)
+                width: 256,  // Width of the QR code (in pixels)
+                height: 256, // Height of the QR code (in pixels)
+                colorDark: "#000000",  // Dark color for the QR code
+                colorLight: "#ffffff", // Background color for the QR code
+                correctLevel: QRCode.CorrectLevel.H  // Error correction level
+            });
+        }
+    </script>
+</body>
+</html>
